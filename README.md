@@ -12,7 +12,7 @@ The conclusion is that the three clusters of presidents are more or less consecu
 
 Based on the weight function, we can calculate the "characteristic words" of each cluster.  
 
-*NOTE: the characteristic words and clusters reported below correspond to one run of the program.  Due to the random nature of the program, the same words and clusters will not necessarily result from every run.*
+*NOTE: the characteristic words and clusters reported here correspond to one run of the program.  Due to the random nature of the program, the same words and clusters will not necessarily result from every run.*
 
 **Characteristic words for cluster A (Washington through Johnson):** intrusted, heretofore, effectually, herewith, effectual, intercourse, salutary, continuance, constitution, expedience
 
@@ -73,3 +73,7 @@ We then compute the overlap between the clusters from the training and testing d
 **Characteristic Words**
 
 To find the characteristic words in a cluster of presidents (or any group of presidents - it doesn't have to be one of the clusters we found), we look at each word that appears in more than half of the presidents' speeches.  We then find the median weight of that word.  If there are an even number of words, we use the lower of the middle two weights rather than the average, to be conservative.  (Thus, if there are only two presidents in the group, both have to say the word.)  Next, we find the median weight of the word in the complement set (the presidents who are not in our chosen group.)  We subtract the two median weights to find the score of that word.  The words with the highest score are those that are much more characteristic of our chosen group than of the other presidents who are not in that group.
+
+**Something to watch out for**
+
+Note that depending on what function you are running, George Washington (for instance) can be president 1 or president 0.  I tried to make him president 1 as much as possible, but for get_characteristic_words he is president [0].
