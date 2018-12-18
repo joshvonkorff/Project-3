@@ -24,6 +24,11 @@ The conclusion is that the three clusters of presidents are more or less consecu
 
 *NOTE: the characteristic words and clusters reported here correspond to one run of the program.  Due to the random nature of the program, the same words and clusters will not necessarily result from every run.  To get a more stable list of words, try setting holdout = False to include all speeches with no holdout.*
 
+
+## Numbering system
+
+George Washington is president number 0, while Donald Trump is number 43.  Grover Cleveland is only president number 21, although he is normally thought of as president 21 and 23 (or 22 and 24 if George Washington is number 1.)  The 0-indexing is used throughout the program, to avoid confusion.  This means that the 0-indexed number differs from the usual by 2 for presidents after Benjamin Harrison but only 1 for presidents before him (as well as for Harrison himself.)
+
 ## Findings
 
 Based on the weight function, we can calculate the "characteristic words" of each cluster.  
@@ -94,10 +99,8 @@ Before clustering, the speeches are randomly divided into a "training" and a "te
 
 We then compute the overlap between the clusters from the training and testing data. The overlap is defined by trying to match the clusters in the training set to the clusters in the testing set to see how much overlap there is.  All presidents which can be matched from one set to the other are counted as matches, and the ratio of the number of matches to the total number of presidents is reported.
 
+The number of matches varies from trial to trial, since the clustering is not a deterministic process, but for three clusters, 40 out of 44 matches is typical.  This means that 40 of the presidents had the same cluster in the two sets (given proper assignment of the cluster numbers.)
+
 ### Characteristic Words
 
-To find the characteristic words in a cluster of presidents (or any group of presidents - it doesn't have to be one of the clusters we found), we look at each word that appears in more than half of the presidents' speeches.  We then find the median weight of that word.  If there are an even number of words, we use the lower of the middle two weights rather than the average, to be conservative.  (Thus, if there are only two presidents in the group, both have to say the word.)  Next, we find the median weight of the word in the complement set (the presidents who are not in our chosen group.)  We subtract the two median weights to find the score of that word.  The words with the highest score are those that are much more characteristic of our chosen group than of the other presidents who are not in that group.
-
-## Numbering system
-
-Note: George Washington is president number 0, while Donald Trump is number 43.  Grover Cleveland is only president number 21, although he is normally thought of as president 21 and 23 (or 22 and 24 if George Washington is number 1.)  The 0-indexing is used throughout the program, to avoid confusion.  This means that the 0-indexed number differs from the usual by 2 for presidents after Benjamin Harrison but only 1 for presidents before him (as well as for Harrison himself.)
+To find the characteristic words in a cluster of presidents (or any group of presidents - it doesn't have to be one of the clusters we found), we find the median weight of each word across all presidents in the group.  A word will have a nonzero median only if it is used by more than half of the presidents.  If there are an even number of presidents, we use the lower of the middle two weights rather than the average, to be conservative.  (Thus, if there are only two presidents in the group, both have to say the word.)  Next, we find the median weight of the word in the complement set (the presidents who are not in our chosen group.)  We subtract the two median weights to find the score of that word.  The words with the highest score are those that are much more characteristic of our chosen group than of the other presidents who are not in that group.
