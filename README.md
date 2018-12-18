@@ -54,7 +54,7 @@ The "weight" for each word is calculated as follows. The goal is to have a weigh
 
 Getting into the details: To compute the weight, the incidence count of the word is first tallied in the combined speeches of a president. Using the wordfreq library, each word's frequency in English is obtained (actually the log of the English frequency), so that it can be compared with the log of the frequency in the speeches. Using the statsmodels library, a least squares regression is used to find a linear relationship between these two logs.  The figure depicts this relationship for one president (James K. Polk.)  Notice that the log of the corpus frequency is discretized, since Polk must say the word an integer number of times in his collected speeches (at least twice).
 
-![Word Frequency Plot](https://github.com/joshvonkorff/Project-3/blob/master/logen_plot.png “Word Frequency Plot”)
+![](logen_plot.png)
 
 This linear relationship can then be used to compute the *predicted* English frequency for a word that has the given corpus frequency.  This *predicted* English frequency can be compared to the word's actual English frequency. The difference between predicted and actual (using subtraction) is essentially a measure of how much more common the word is in the speech corpus compared to the English language. A weight value of 1 would mean that the word is "e" times more common in the speech corpus as compared with English.
 
