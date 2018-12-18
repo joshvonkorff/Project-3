@@ -66,7 +66,7 @@ Figure 2 shows the weight plotted against corpus frequency for James K. Polk, wh
 
 ![](weight_plot.png "Figure 2")
 
-Technical note: The logs are summed because it is more meaningful to add logs (since this means multiplying the arguments) than to multiply them, for instance.  In a previous version of the project, I multiplied the logs, but this led to the undesired consequence that $log(e)$ and $log(e<sup>2</sup>)$ differ by a factor of 2, while $log(e<sup>5</sup>)$ and $log(e<sup>6</sup>)$ only differ by a factor of 1.2.  This means that the previous version made very little distinction between numbers of words, so long as they were large.  When adding the logs, it would be meaningful to include a multiplier, like: log(frequency ratio) + a * log(word count), where "a" need not be 1.  I am not sure what is the best value of a, however, so I left it equal to 1.
+Technical note: The logs are summed because it is more meaningful to add logs (since this means multiplying the arguments) than to multiply them, for instance.  In a previous version of the project, I multiplied the logs, but this led to the undesired consequence that log(e) and log(e<sup>2</sup>) differ by a factor of 2, while log(e<sup>5</sup>) and log(e<sup>6</sup>) only differ by a factor of 1.2.  This means that the previous version made very little distinction between numbers of words, so long as they were large.  When adding the logs, it would be meaningful to include a multiplier, like: log(frequency ratio) + a * log(word count), where "a" need not be 1.  I am not sure what is the best value of a, however, so I left it equal to 1.
 
 ### Similarity score
 
