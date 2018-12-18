@@ -4,6 +4,8 @@
 
 ## Introduction
 
+Understanding U.S. politics and history is a particularly important endeavour that is of interest to many people - both historians and citizens alike.  One indicator of the relevant issues in a particular era is the content of the president's speech.  Presidential speeches have been analyzed to determine the grade level of their speech, for instance.  In this project, I am analyzing the words used by each president to understand the topics on which they are speaking.
+
 This project is an analysis of many presidential speeches from the site millercenter.org.  The site contains the text of at least one speech (and almost always more) given by each of the 44 presidents.
 
 The goal is to cluster presidents into three clusters based on the words that they use in their speeches.  This analysis can help us to understand how presidents' concerns, communication styles, and interests changed over time - a question of tremendous historical importance.  
