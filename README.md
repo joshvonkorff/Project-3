@@ -10,7 +10,11 @@ This project is an analysis of many presidential speeches from the site millerce
 
 The goal is to cluster presidents into three clusters based on the words that they use in their speeches.  This analysis can help us to understand how presidents' concerns, communication styles, and interests changed over time - a question of tremendous historical importance.  
 
-Words are given more weight if (1) they are frequent in that president's speeches *and* (2) they are more common in that president's speeches than in the English language generally.  Based on this weight function, presidents who use similar words are said to be similar and are grouped together.
+Words are given more weight if (1) they are frequent in that president's speeches *and* (2) they are less common in the English language than other words that have a similar frequency in that president's speeches.  
+
+In other words, if 'Soviet' and 'because' each makes up 1% of the words in a particular president's speeches, 'Soviet' would be given higher weight (for that president), since it is less common in English. 
+
+Based on this weight function, presidents who use similar words are said to be similar and are grouped together.
 
 The conclusion is that the three clusters of presidents are more or less consecutive in time.  The first cluster runs from George Washington to Andrew Johnson; the second from Ulysses S. Grant to Herber Hoover; and the third from Franklin D. Roosevelt to Donald Trump.  A holdout test set is used to verify that the clustering does not depend very much on the particular choice of speeches for each president.
 
