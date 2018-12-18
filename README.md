@@ -20,29 +20,27 @@ Based on the weight function, we can calculate the "characteristic words" of eac
 
 *NOTE: the characteristic words and clusters reported here correspond to one run of the program.  Due to the random nature of the program, the same words and clusters will not necessarily result from every run.*
 
-**Characteristic words for cluster A (Washington through Johnson):** intrusted, heretofore, effectually, herewith, effectual, intercourse, salutary, continuance, constitution, expedience
+**Characteristic words for cluster A (Washington through Johnson):** heretofore, herewith, intercourse, continuance, pursuance, effectually, justly, effectual, tranquillity, tribes
 
-Counting only nouns and words with semantic content: constitution, postmaster, duties, framers, treasury, commerce, vessels, harbors, cargoes, provisions
+Counting only nouns and words with semantic content: tribes, receipts, vessels, harbors, ports, territories
 
-Analysis: Presidents are talking a lot more formally in this time period. They are still talking about the recently-devised constitution and its framers. Trade, commerce, and shipping are clearly important; perhaps the main function of the federal government at this time is to manage commerce?
+Analysis: Presidents are talking a lot more formally in this time period. Ships, ports, and harbors are clearly important; is this about commerce or about warships?  Maybe both.
 
-**Characteristic words for cluster B (Grant through Hoover):** speedily, gratifying, continuance, intrusted, tariff, appropriation, furnish, guaranty, enactment, appropriations
+**Characteristic words for cluster B (Grant through Hoover):** earnestly, tariff, heretofore, appropriation, intrusted, evils, gratifying, speedily, postmaster, enactment
 
-Counting only nouns and words with semantic content: tariff, appropriation, appropriations, navy, receipts, postmaster, fiscal, commissioners, legislation, treasury
+Counting only nouns and words with semantic content: tariff, appropriation, postmaster, receipts, postal, armament, statute, nicaragua, cruisers, railroads
 
-Conclusion: There seems to be more talk of financial issues than with the other clusters (tariff, appropriation, receipts, fiscal, treasury).
+Conclusion: There seems to be more talk of financial issues than with the other clusters (tariff, appropriation, receipts).  There is evidently an ongoing conflict with Nicaragua, and railroads are important.
 
-**Characteristic words for cluster C (FDR through Trump):** america's, america, americans, american, peace, bipartisan, allies, nation's, strengthen, nation
+**Characteristic words for cluster C (FDR through Trump):** america’s, americans, allies, nation’s, soviet, nuclear, leaders, percent, tax, weapons, democracy, budget, bipartisan, jobs
 
-Conclusion: this is the "America as a great power and centralized government" cluster. America has allies, wants to preserve international peace, and has a strong identity as a nation. There is also some partisan division that leads to valuing "bipartisan" legislation.
+Conclusion: this is the "America as a great power and centralized government" cluster. America has allies, opposes the Soviet Union, and has a strong identity as a nation and a democracy. There is also some partisan division that leads to valuing "bipartisan" legislation.
 
-We can also examine the characteristic words for individual presidents.  In both cases, I count only words that have semantic content and are not obscure proper names.  (My own sense of what is obscure may differ from others'.)
+We can also examine the characteristic words for individual presidents.  In both cases, I count only words that have semantic content and I have omitted most proper names.
 
-**Characteristic words for Trump:** DACA, opioid, scouts, dreamers, opioids, jamboree, Trump, trafficker, overprescribing, businessperson
+**Characteristic words for Trump:** DACA, dreamers, sequester, vetting, tremendous, immigration, businessperson, america’a, hardworking, thank
 
-(I think one of the speeches is given to a group of boy scouts, and one is given on the topic of opioids.)
-
-**Characteristic words for Obama:** bipartisan, hardworking, Trayvon, Americans, undocumented, Isil's, Isil, childcare, autoworker, deficits
+**Characteristic words for Obama:** inequality, likelier, jobs, bedrolls, autoworker, businesses, bipartisan, childcare, we’ve, reenergized
 
 ## Algorithm
 
