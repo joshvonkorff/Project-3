@@ -1,14 +1,16 @@
 # **Presidential speech project**
 
-*NOTE:* To run this project, run Presidents.ipynb one cell at a time, in sequential order.  The total run may take some time, perhaps at most a half hour.  The bottleneck is the function generate_overrep_words().  If you change NUMP to a smaller number (the most recent NUMP presidents are used) it can dramatically reduce the run time.  I would recommend doing this when you first try to run the file.
+## How to run this project
+
+To run this project, run Presidents.ipynb one cell at a time, in sequential order.  The total run may take some time, perhaps at most a half hour.  The bottleneck is mainly the function generate_overrep_words().  If you change NUMP to a smaller number (the most recent NUMP presidents are used) it can dramatically reduce the run time.  I would recommend doing this when you first try to run the file.
 
 ## Introduction
 
-Understanding U.S. politics and history is a particularly important endeavour that is of interest to many people - both historians and citizens alike.  One indicator of the relevant issues in a particular era is the content of the president's speech.  Presidential speeches have been analyzed to determine the grade level of their speech, for instance.  In this project, I am analyzing the words used by each president to understand the topics on which they are speaking.
+Understanding U.S. politics and history is of interest to many people - both historians and citizens alike.  One indicator of the relevant issues in a particular era is the content of the president's speech.  Presidential speeches have been analyzed to determine the grade level of their speech, for instance.  In this project, I am analyzing the words used by each president to understand the topics on which they are speaking.
 
-This project is an analysis of many presidential speeches from the site millercenter.org.  The site contains the text of at least one speech (and almost always more) given by each of the 44 presidents.
+This project is an analysis of many presidential speeches from the site millercenter.org.  The site contains the text of at least one speech (and almost always more) given by each of the 44 presidents.  There are 476 speeches in total, or about 11 speeches per president.
 
-The goal is to cluster presidents into clusters based on the words that they use in their speeches.  This analysis can help us to understand how presidents' concerns, communication styles, and interests changed over time - a question of tremendous historical importance. 
+The goal is to group presidents into clusters based on the words that they use in their speeches.  This analysis can help us to understand how presidents' concerns, communication styles, and interests changed over time - a question of tremendous historical importance. 
 
 Words are given more weight if (1) they are frequent in that president's speeches *and* (2) they are less common in the English language than other words that have a similar frequency in that president's speeches.  
 
@@ -16,15 +18,15 @@ In other words, if 'Soviet' and 'because' each makes up 1% of the words in a par
 
 Based on this weight function, presidents who use similar words are said to be similar and are grouped together.
 
-How many clusters should we use?  According to an assessment of the silhouette coefficient, which is a measure of the quality of a clustering analysis, I found that two clusters is a good fit while three through six clusters are all about equally mediocre.  That said, in this document I will use three clusters, since it gives the reader more examples and therefore a better sense of what the algorithm can do.
+How many clusters should we use?  According to an assessment of the silhouette coefficient, which is a measure of the quality of a clustering analysis, I found that two clusters is a good fit, while three through six clusters are all about equally mediocre.  That said, in this document I will use three clusters, since it gives the reader more examples and therefore a better sense of what the algorithm can do.
 
-The conclusion is that the three clusters of presidents are more or less consecutive in time.  The first cluster runs from George Washington to Andrew Johnson; the second from Ulysses S. Grant to Herber Hoover; and the third from Franklin D. Roosevelt to Donald Trump.  A holdout test set is used to verify that the clustering does not depend very much on the particular choice of speeches for each president.
+The conclusion is that the three clusters of presidents are more or less consecutive in time.  The first cluster runs from George Washington to Andrew Johnson; the second from Ulysses S. Grant to Herber Hoover; and the third from Franklin D. Roosevelt to Donald Trump.  A holdout set is used to verify that the clustering does not depend very much on the particular choice of speeches for each president.
+
+*NOTE: the characteristic words and clusters reported here correspond to one run of the program.  Due to the random nature of the program, the same words and clusters will not necessarily result from every run.  To get a more stable list of words, try setting holdout = False to include all speeches with no holdout.*
 
 ## Findings
 
 Based on the weight function, we can calculate the "characteristic words" of each cluster.  
-
-*NOTE: the characteristic words and clusters reported here correspond to one run of the program.  Due to the random nature of the program, the same words and clusters will not necessarily result from every run.  To get a more stable list of words, try setting train_test = False to include all speeches rather than half.*
 
 **Characteristic words for cluster A (Washington through Johnson):** heretofore, herewith, intercourse, continuance, pursuance, effectually, justly, effectual, tranquillity, tribes
 
@@ -34,17 +36,19 @@ Analysis: Presidents are talking a lot more formally in this time period. Ships,
 
 **Characteristic words for cluster B (Grant through Hoover):** earnestly, tariff, heretofore, appropriation, intrusted, evils, gratifying, speedily, postmaster, enactment
 
-Counting only nouns and words with semantic content: tariff, appropriation, postmaster, receipts, postal, armament, statute, nicaragua, cruisers, railroads
+Counting only nouns and words with semantic content: tariff, appropriation, postmaster, receipts, postal, armament, statute, Nicaragua, cruisers, railroads
 
 Conclusion: There seems to be more talk of financial issues than with the other clusters (tariff, appropriation, receipts).  There is evidently an ongoing conflict with Nicaragua, and railroads are important.
 
-**Characteristic words for cluster C (FDR through Trump):** america’s, americans, allies, nation’s, soviet, nuclear, leaders, percent, tax, weapons, democracy, budget, bipartisan, jobs
+**Characteristic words for cluster C (FDR through Trump):** America’s, Americans, allies, nation’s, soviet, nuclear, leaders, percent, tax, weapons, democracy, budget, bipartisan, jobs
 
 Conclusion: this is the "America as a great power and centralized government" cluster. America has allies, opposes the Soviet Union, and has a strong identity as a nation and a democracy. There is also some partisan division that leads to valuing "bipartisan" legislation.
 
-We can also examine the characteristic words for individual presidents.  In both cases, I count only words that have semantic content and I have omitted most proper names.
+*Note:* When two clusters are sought rather than three, one of the two will be approximately cluster C, while the other is approximately the comination of A and B.
 
-**Characteristic words for Trump:** DACA, dreamers, sequester, vetting, tremendous, immigration, businessperson, america’a, hardworking, thank
+We can also examine the characteristic words for individual presidents.  In both cases, I am *mostly* picking out nouns, and I have omitted most proper names.
+
+**Characteristic words for Trump:** DACA, dreamers, sequester, vetting, tremendous, immigration, businessperson, America’s, hardworking, thank
 
 **Characteristic words for Obama:** inequality, likelier, jobs, bedrolls, autoworker, businesses, bipartisan, childcare, we’ve, reenergized
 
@@ -54,9 +58,9 @@ We can also examine the characteristic words for individual presidents.  In both
 
 To judge which presidents are similar, we need to know how important each word might be.  For example, the word "the" appears very frequently, but probably is not that important in differentiating between the presidents.
 
-The "weight" for each word is calculated as follows. The goal is to have a weight that reflects (1) the relative incidence of the word in the English language compared with other words of similar frequency in the speech corpus, (2) the overall incidence of the word in the speech corpus. Thus, a word that is highly unusual ("supercalifragilisticexpealidocious") but only appears once in the speech corpus is not that interesting. In contrast, a word that is very common, but appears only the usual amount in the corpus ("the") is also not that interesting. The weight for each word is computed as a sum of these two factors.
+The "weight" for each word is calculated as follows. The goal is to have a weight that reflects (1) the relative incidence of the word in the English language compared with other words of similar frequency in the speech corpus, (2) the overall incidence of the word in the speech corpus. Thus, a word that is highly unusual ("supercalifragilisticexpealidocious") but only appears twice in the speech corpus for a given president is only of moderate interest. In contrast, a word that is very common, but appears only the usual amount in the corpus ("the") is also of moderate interest. The weight for each word is computed as a sum of these two factors.
 
-Getting into the details: To compute the weight, the incidence count of the word is first tallied in the combined speeches of a president. Using the wordfreq library, each word's frequency in English is obtained (actually the log of the English frequency). Using the statsmodels library, a least squares regression is used to find a linear relationship between these two logs.  Figure 1 depicts this relationship for one president (James K. Polk.)  Notice that the log of the corpus frequency is discretized, since Polk must say the word an integer number of times in his collected speeches (we requires him to say it at least twice).  Also, notice that the slope of the line is not 1: an increase of a factor of e in the corpus frequency corresponds to an increase of more than e in the likely English frequency.
+Getting into the details: To compute the weight, the incidence count of the word is first tallied in the combined speeches of a president. Using the wordfreq library, each word's frequency in English is obtained (actually the log of the English frequency). Using the statsmodels library, a least squares regression is used to find a linear relationship between these two logs.  Figure 1 depicts this relationship for one president (James K. Polk.)  Notice that the log of the corpus frequency is discretized, since Polk must say the word an integer number of times in his collected speeches (we required him to say it at least twice).  Also, notice that the slope of the line is not 1: an increase of a factor of e in the corpus frequency corresponds to an increase of more than e in the likely English frequency.
 
 ![](logen_plot.png "Figure 1")
 
