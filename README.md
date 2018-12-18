@@ -1,6 +1,6 @@
 # **Presidential speech project**
 
-*NOTE:* To run this project, run Presidents.ipynb one cell at a time, in sequential order.  The total run may take some time, perhaps at most a half hour.  If you change NUMP to a smaller number (the most recent NUMP presidents are used) it can dramatically reduce the run time.  I would recommend doing this when you first try to run the file.
+*NOTE:* To run this project, run Presidents.ipynb one cell at a time, in sequential order.  The total run may take some time, perhaps at most a half hour.  The bottleneck is the function generate_overrep_words().  If you change NUMP to a smaller number (the most recent NUMP presidents are used) it can dramatically reduce the run time.  I would recommend doing this when you first try to run the file.
 
 ## Introduction
 
