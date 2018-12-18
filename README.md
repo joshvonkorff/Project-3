@@ -22,7 +22,7 @@ The conclusion is that the three clusters of presidents are more or less consecu
 
 Based on the weight function, we can calculate the "characteristic words" of each cluster.  
 
-*NOTE: the characteristic words and clusters reported here correspond to one run of the program.  Due to the random nature of the program, the same words and clusters will not necessarily result from every run.*
+*NOTE: the characteristic words and clusters reported here correspond to one run of the program.  Due to the random nature of the program, the same words and clusters will not necessarily result from every run.  To get a more stable list of words, try setting train_test = False to include all speeches rather than half.*
 
 **Characteristic words for cluster A (Washington through Johnson):** heretofore, herewith, intercourse, continuance, pursuance, effectually, justly, effectual, tranquillity, tribes
 
