@@ -44,7 +44,7 @@ We can also examine the characteristic words for individual presidents.  In both
 
 ## Algorithm
 
-**Weight function:**
+### Weight function:
 
 To judge which presidents are similar, we need to know how important each word might be.  For example, the word "the" appears very frequently, but probably is not that important in differentiating between the presidents.
 
@@ -54,13 +54,13 @@ Getting into the details: To compute the weight, the incidence count of the word
 
 This linear relationship can then be used to compute the *predicted* English frequency for a word that has the given corpus frequency.  This *predicted* English frequency can be compared to the word's actual English frequency. The difference between predicted and actual (using subtraction) is essentially a measure of how much more common the word is in the speech corpus compared to the English language. A weight value of 1 would mean that the word is "e" times more common in the speech corpus as compared with English.
 
-*An even more technical note:* the reason we must predict the English frequency is that it is possible for words of a particular frequency to *typically* be more common in the corpus than in English.  In particular, if there are 10,000 rare words that are expected to occur with probability 1/200, then 50 are expected to appear.  Each of these words *necessarily* appears 200 times more frequently than expected, simply because once is 200 times more than 1/200.  Therefore, we have to *experimentally* find the relationship between occurrence in the corpus and occurrence in English, which may vary with frequency.  This experimental test is exactly what the linear regression does.
+Technical note: the reason we must predict the English frequency is that it is possible for words of a particular frequency to *typically* be more common in the corpus than in English.  In particular, if there are 10,000 rare words that are expected to occur with probability 1/200, then 50 are expected to appear.  Each of these words *necessarily* appears 200 times more frequently than expected, simply because once is 200 times more than 1/200.  If we include this factor, all of the rare words will appear to be unusually frequent, whereas all of the common words will not.  This is an undesirable outcome.  Therefore, we have to *experimentally* find the relationship between occurrence in the corpus and occurrence in English, which may vary with frequency.  This experimental test is exactly what the linear regression does.
 
 Next, the number of words in each set of speeches can range from 20,000 to 800,000, so the number of appearances is multiplied by (800,000 / length) to get the number that would appear in 800,000 words. Then, the log is taken. This number is added to the weight to get the final weight value. This takes into account that we care more about words that appear many times as opposed to only once.  
 
-Technical note: The logs are summed because it is more meaningful to add logs (since this means multiplying the arguments) than to multiply them, for instance.  In a previous version of the project, I multiplied the logs, but this led to the undesired consequence that $log(e)$ and $log(e^2)$ differ by a factor of 2, while $log(e^5)$ and $log(e^6)$ only differ by a factor of 1.2.
+Technical note: The logs are summed because it is more meaningful to add logs (since this means multiplying the arguments) than to multiply them, for instance.  In a previous version of the project, I multiplied the logs, but this led to the undesired consequence that $log(e)$ and $log(e<sup>2</sup>)$ differ by a factor of 2, while $log(e<sup>5</sup>)$ and $log(e<sup>6</sup>)$ only differ by a factor of 1.2.  This means that the previous version made very little distinction between numbers of words, so long as they were large.  When adding the logs, it would be meaningful to include a multiplier, like: log(frequency ratio) + a * log(word count), where "a" need not be 1.  I am not sure what is the best value of a, however, so I left it equal to 1.
 
-**Similarity score**
+### Similarity score
 
 The similarity score for two presidents M and N is calculated as follows: the similarity score for a word is the minimum of the word's weight for president M and for president N. Only words that appear in both president M and president N's speeches will get a nonzero score.
 
@@ -68,20 +68,20 @@ The total similarity between two presidents is the sum of the individual similar
 
 Thus, presidents who say more words will tend to have higher similarities with other presidents.  However, since they have higher similarities with *all* other presidents, this should not unduly affect the clustering process.
 
-**Spectral Clustering**
+### Spectral Clustering
 
 A 44 x 44 affinity matrix is constructed based on similarity scores, and Spectral Clustering is used to perform the cluster analysis.  Spectral Clustering was selected because: (1) it lets us easily select the number of clusters, unlike Affinity Propagation which requires us to manually set a "preference" level by laborious trial and error, (2) Agglomerative clustering was tried, but it tended to produce one really big cluster with one or two singletons.
 
 Before clustering, the speeches are randomly divided into a training and a testing set for each president.  The clustering is then performed twice: once for the training data and once for the testing data.  (In fact, there is no real difference in the way the two data sets are treated, since the analysis is unsupervised in both cases.)
 
-**Compute Cluster Overlap**
+### Compute Cluster Overlap
 
 We then compute the overlap between the clusters from the training and testing data. The overlap is defined by trying to match the clusters in the training set to the clusters in the testing set to see how much overlap there is.  All presidents which can be matched from one set to the other are counted as matches, and the ratio of matches to the total number of presidents is reported.
 
-**Characteristic Words**
+### Characteristic Words
 
 To find the characteristic words in a cluster of presidents (or any group of presidents - it doesn't have to be one of the clusters we found), we look at each word that appears in more than half of the presidents' speeches.  We then find the median weight of that word.  If there are an even number of words, we use the lower of the middle two weights rather than the average, to be conservative.  (Thus, if there are only two presidents in the group, both have to say the word.)  Next, we find the median weight of the word in the complement set (the presidents who are not in our chosen group.)  We subtract the two median weights to find the score of that word.  The words with the highest score are those that are much more characteristic of our chosen group than of the other presidents who are not in that group.
 
-**Something to watch out for**
+## Numbering system
 
-Note that depending on what function you are running, George Washington (for instance) can be president 1 or president 0.  I tried to make him president 1 as much as possible, but for get_characteristic_words he is president [0].
+Note: George Washington is president number 0, while Donald Trump is number 43.  Grover Cleveland is only president number 21, although he is normally thought of as president 21 and 23 (or 22 and 24 if George Washington is number 1.)  The 0-indexing is used throughout the program, to avoid confusion.  This means that the 0-indexed number differs from the usual by 2 for presidents after Benjamin Harrison but only 1 for presidents before him.
