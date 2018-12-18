@@ -2,6 +2,8 @@
 
 *NOTE:* To run this project, run Presidents.ipynb one cell at a time, in sequential order.  The total run may take some time, perhaps at most a half hour.  If you change NUMP to a smaller number (the most recent NUMP presidents are used) it can dramatically reduce the run time.  I would recommend doing this when you first try to run the file.
 
+## Introduction
+
 This project is an analysis of many presidential speeches from the site millercenter.org.  The site contains the text of at least one speech (and almost always more) given by each of the 44 presidents.
 
 The goal is to cluster presidents into three clusters based on the words that they use in their speeches.  This analysis can help us to understand how presidents' concerns, communication styles, and interests changed over time - a question of tremendous historical importance.  
@@ -9,6 +11,8 @@ The goal is to cluster presidents into three clusters based on the words that th
 Words are given more weight if (1) they are frequent in that president's speeches *and* (2) they are more common in that president's speeches than in the English language generally.  Based on this weight function, presidents who use similar words are said to be similar and are grouped together.
 
 The conclusion is that the three clusters of presidents are more or less consecutive in time.  The first cluster runs from George Washington to Andrew Johnson; the second from Ulysses S. Grant to Herber Hoover; and the third from Franklin D. Roosevelt to Donald Trump.  A holdout test set is used to verify that the clustering does not depend very much on the particular choice of speeches for each president.
+
+## Findings
 
 Based on the weight function, we can calculate the "characteristic words" of each cluster.  
 
@@ -38,6 +42,8 @@ We can also examine the characteristic words for individual presidents.  In both
 
 **Characteristic words for Obama:** bipartisan, hardworking, Trayvon, Americans, undocumented, Isil's, Isil, childcare, autoworker, deficits
 
+## Algorithm
+
 **Weight function:**
 
 To judge which presidents are similar, we need to know how important each word might be.  For example, the word "the" appears very frequently, but probably is not that important in differentiating between the presidents.
@@ -50,7 +56,9 @@ This linear relationship can then be used to compute the *predicted* English fre
 
 *An even more technical note:* the reason we must predict the English frequency is that it is possible for words of a particular frequency to *typically* be more common in the corpus than in English.  In particular, if there are 10,000 rare words that are expected to occur with probability 1/200, then 50 are expected to appear.  Each of these words *necessarily* appears 200 times more frequently than expected, simply because once is 200 times more than 1/200.  Therefore, we have to *experimentally* find the relationship between occurrence in the corpus and occurrence in English, which may vary with frequency.  This experimental test is exactly what the linear regression does.
 
-Next, the number of words in each set of speeches can range from 20,000 to 800,000, so the number of appearances is multiplied by (800,000 / length) to get the number that would appear in 800,000 words. Then, the log is taken. This number is multiplied by the weight to get the final weight value. This takes into account that we care more about words that appear many times as opposed to only once.
+Next, the number of words in each set of speeches can range from 20,000 to 800,000, so the number of appearances is multiplied by (800,000 / length) to get the number that would appear in 800,000 words. Then, the log is taken. This number is added to the weight to get the final weight value. This takes into account that we care more about words that appear many times as opposed to only once.  
+
+Technical note: The logs are summed because it is more meaningful to add logs (since this means multiplying the arguments) than to multiply them, for instance.  In a previous version of the project, I multiplied the logs, but this led to the undesired consequence that $log(e)$ and $log(e^2)$ differ by a factor of 2, while $log(e^5)$ and $log(e^6)$ only differ by a factor of 1.2.
 
 **Similarity score**
 
