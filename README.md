@@ -8,13 +8,15 @@ Understanding U.S. politics and history is a particularly important endeavour th
 
 This project is an analysis of many presidential speeches from the site millercenter.org.  The site contains the text of at least one speech (and almost always more) given by each of the 44 presidents.
 
-The goal is to cluster presidents into three clusters based on the words that they use in their speeches.  This analysis can help us to understand how presidents' concerns, communication styles, and interests changed over time - a question of tremendous historical importance.  
+The goal is to cluster presidents into clusters based on the words that they use in their speeches.  This analysis can help us to understand how presidents' concerns, communication styles, and interests changed over time - a question of tremendous historical importance. 
 
 Words are given more weight if (1) they are frequent in that president's speeches *and* (2) they are less common in the English language than other words that have a similar frequency in that president's speeches.  
 
 In other words, if 'Soviet' and 'because' each makes up 1% of the words in a particular president's speeches, 'Soviet' would be given higher weight (for that president), since it is less common in English. 
 
 Based on this weight function, presidents who use similar words are said to be similar and are grouped together.
+
+How many clusters should we use?  According to an assessment of the silhouette coefficient, which is a measure of the quality of a clustering analysis, I found that two clusters is a good fit while three through six clusters are all about equally mediocre.  That said, in this document I will use three clusters, since it gives the reader more examples and therefore a better sense of what the algorithm can do.
 
 The conclusion is that the three clusters of presidents are more or less consecutive in time.  The first cluster runs from George Washington to Andrew Johnson; the second from Ulysses S. Grant to Herber Hoover; and the third from Franklin D. Roosevelt to Donald Trump.  A holdout test set is used to verify that the clustering does not depend very much on the particular choice of speeches for each president.
 
