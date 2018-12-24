@@ -47,9 +47,9 @@ Conclusion: There seems to be more talk of financial issues than with the other 
 
 **Characteristic words for cluster C (FDR through Trump):** America’s, Americans, allies, nation’s, soviet, nuclear, leaders, percent, tax, weapons, democracy, budget, bipartisan, jobs
 
-Conclusion: this is the "America as a great power and centralized government" cluster. America has allies, opposes the Soviet Union, and has a strong identity as a nation and a democracy. There is also some partisan division that leads to valuing "bipartisan" legislation.
+Conclusion: this is the "America as a great power and centralized government" cluster. America has allies, opposes the Soviet Union, and has a strong identity as a nation and a democracy. There is also some partisan division that leads to valuing "bipartisan" legislation.  Perhaps the most important differences between this period and the previous periods is that the president's speeches are now televised and viewed by a much broader audience.  FDR was not televised, but made extensive use of the radio.
 
-*Note:* When two clusters are sought rather than three, one of the two will be approximately cluster C, while the other is approximately the comination of A and B.
+*Note:* When two clusters are sought rather than three, one of the two will be approximately cluster C, while the other is approximately the combination of A and B.
 
 We can also examine the characteristic words for individual presidents.  In both cases, I am *mostly* picking out nouns, and I have omitted most proper names.
 
